@@ -67,13 +67,15 @@
                                 <form method="post">
                                     <form method="post">
                                         <button type="button"
-                                            class="bg-red-500 border border-red-500 text-white py-1.5 px-2 "><i
+                                            class="decrease-btn bg-red-500 border border-red-500 text-white py-1.5 px-2 "><i
                                                 class="fa-solid fa-minus"></i></button>
-                                        <input type="text" class="border py-1.5 px-2.5 w-60" />
-                                        <button type="button"
-                                            class="bg-red-500 border border-red-500 text-white py-1.5 px-2 "><i
+                                        <input type="number" class="border py-1.5 px-2.5 w-60 input-quantity"
+                                            max="{{ $product->stockQuantity }}" min="0" name="quantity" />
+                                        <button type="button" id="{{ $product->id }}"
+                                            class="increase-btn bg-red-500 border border-red-500 text-white py-1.5 px-2 "><i
                                                 class="fa-solid fa-plus"></i></button>
                                     </form>
+                                    <p class="text-red-500 warning">{{ session('failed') }}</p>
                                     <button type="submit"
                                         class="bg-red-500 px-3 w-full md:w-80 md:py-2 hover:bg-red-800 duration-300 py-1.5 my-4 text-white font-semibold rounded-md">Add
                                         To
@@ -84,51 +86,69 @@
                     </div>
                 </div>
                 {{-- --reviews---- --}}
-            <div class="container mx-auto mt-2.5">
-                <h3 class="border-l-4 border-red-500 px-2.5">Reviews</h3>
-                @foreach ($product->reviews as $review )
-            <div class="border rounded px-2 py-1.5 ">
-                
-                <div>
-                    <div class="profile-image">
-                        <img class="w-10 md:block h-10 rounded-full"
-                            src="{{ $review->user->avatar ? asset('storage/' . $review->user->avatar) : asset('/images/no-image.jpg') }}"
-                            alt="user-profile" />
-                    </div>
-                    <div class="review-info">
-                        <p class="block">{{$review->user->firstName}}{{$review->user->lastName}}</p>
-    
-                    </div>
-                </div>
-                <div class="flex items-center flex-col">
-                    <div class="flex items-center">
-                        <div class="my-1.5">
-                            @if (is_int($review->rating))
-                                @for ($i = 0; $i < $product->rating; $i++)
-                                    <span><i class="fa-solid fa-star text-yellow-400"></i></span>
-                                @endfor
-                            @else
-                                @for ($i = 0; $i < (int) $product->rating; $i++)
-                                    <span><i class="fa-solid fa-star text-yellow-400"></i></span>
-                                @endfor
-                                <span><i class="fa-solid fa-star-half-stroke text-yellow-400"></i></span>
-                            @endif
+                <div class="container mx-auto mt-4">
+                    <h3 class="border-l-4 border-red-500 px-2.5 mb-4">Reviews ({{ count($product->reviews) }})</h3>
+                    @foreach ($product->reviews as $review)
+                        <div class="border border-gray-400 rounded shadow flex flex-col gap-5 max-w-96 py-3 px-3">
+                            <div class="flex  items-center justify-between">
+                                <div class="flex items-center gap-3 md:gap-3">
+                                    <img class="w-10 md:block h-10 rounded-full border border-yellow-500"
+                                        src="{{ $review->user->avatar ? asset('storage/' . $review->user->avatar) : asset('/images/no-image.jpg') }}"
+                                        alt="user-profile" />
+                                    <div class="flex items-center flex-col">
+                                        <span
+                                            class="font-bold">{{ $review->user->firstName }}{{ $review->user->lastName }}</span>
+                                        <div class="">
+                                            @if (is_int($review->rating))
+                                                @for ($i = 0; $i < $product->rating; $i++)
+                                                    <span><i
+                                                            class="fa-solid fa-star text-yellow-400 text-xs md:text-sm"></i></span>
+                                                @endfor
+                                            @else
+                                                @for ($i = 0; $i < (int) $product->rating; $i++)
+                                                    <span><i
+                                                            class="fa-solid fa-star text-yellow-400 text-xs md:text-sm"></i></span>
+                                                @endfor
+                                                <span><i
+                                                        class="fa-solid fa-star-half-stroke text-yellow-400 text-xs md:text-sm"></i></span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @php
+                                    $date = Carbon\Carbon::parse($review->created_at);
+                                    $elapsed = $date->diffForHumans();
+                                @endphp
+                                <span class="text-gray-400 text-sm md:text-base">{{ $elapsed }}</span>
+                            </div>
+                            <div>
+                                <p class="text-gray-800 text-sm md:text-base">{{ $review->comment }}</p>
+                            </div>
                         </div>
-                        @php
-                        $date=date_format($review->created_at,"M d Y")   
-                       @endphp
-                       <div>{{$date}}</span>
-                    </div>
-                    <div>
-                        <p class="">{{$review->comment}}</p>
-                    </div>
-                </div>
 
-            </div>
-@endforeach
-            </div>
-            </div>
+                </div>
+        @endforeach
+        </div>
+        </div>
         @endif
     </section>
 
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            let initialQuantity = 0;
+            $(".input-quantity").val(initialQuantity)
+            $(".increase-btn").on("click", function() {
+                $(".input-quantity").val(initialQuantity++)
+            })
+            $(".decrease-btn").on("click", function() {
+                if ($(".input-quantity").val() == 0) {
+                    $(".decrease-btn").attr("disabled")
+                } else {
+                    $(".input-quantity").val(initialQuantity--)
+                }
+            })
+        })
+    </script>
 @endsection

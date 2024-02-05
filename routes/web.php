@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Get All The Products
 Route::get("/", [ProductController::class, "index"]);
+
+//Check For The Quantity
+Route::get("/products/{product}/checkQuantity", [ProductController::class, "checkQuantity"]);
+
+//Get Single Product
 Route::get("/products/{name}", [ProductController::class, "show"]);
