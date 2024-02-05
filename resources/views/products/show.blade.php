@@ -6,7 +6,7 @@
                 <p class="text-base">{{ $error }} :C</p>
             </div>
         @else
-            <div class="container mx-auto w-full h-full ">
+            <div class="container mx-auto  ">
                 <div class="header-info flex items-center justify-between mb-5 w-full">
                     <div>
                         <a href="/" class="block  rounded-full px-2.5 py-1.5 md:py-1.5 border-2"> <i
@@ -83,6 +83,50 @@
                         </div>
                     </div>
                 </div>
+                {{-- --reviews---- --}}
+            <div class="container mx-auto mt-2.5">
+                <h3 class="border-l-4 border-red-500 px-2.5">Reviews</h3>
+                @foreach ($product->reviews as $review )
+            <div class="border rounded px-2 py-1.5 ">
+                
+                <div>
+                    <div class="profile-image">
+                        <img class="w-10 md:block h-10 rounded-full"
+                            src="{{ $review->user->avatar ? asset('storage/' . $review->user->avatar) : asset('/images/no-image.jpg') }}"
+                            alt="user-profile" />
+                    </div>
+                    <div class="review-info">
+                        <p class="block">{{$review->user->firstName}}{{$review->user->lastName}}</p>
+    
+                    </div>
+                </div>
+                <div class="flex items-center flex-col">
+                    <div class="flex items-center">
+                        <div class="my-1.5">
+                            @if (is_int($review->rating))
+                                @for ($i = 0; $i < $product->rating; $i++)
+                                    <span><i class="fa-solid fa-star text-yellow-400"></i></span>
+                                @endfor
+                            @else
+                                @for ($i = 0; $i < (int) $product->rating; $i++)
+                                    <span><i class="fa-solid fa-star text-yellow-400"></i></span>
+                                @endfor
+                                <span><i class="fa-solid fa-star-half-stroke text-yellow-400"></i></span>
+                            @endif
+                        </div>
+                        @php
+                        $date=date_format($review->created_at,"M d Y")   
+                       @endphp
+                       <div>{{$date}}</span>
+                    </div>
+                    <div>
+                        <p class="">{{$review->comment}}</p>
+                    </div>
+                </div>
+
+            </div>
+@endforeach
+            </div>
             </div>
         @endif
     </section>

@@ -15,6 +15,7 @@ class ProductController extends Controller
         return view("products.index", ["products" => $products]);
     }
 
+    
     public function show(Request $request, $name)
     {
         $product = Product::where('name', $name)->first();
