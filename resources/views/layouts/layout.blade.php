@@ -27,7 +27,6 @@
 
     {{-- ---header--- --}}
     @include('components.header')
-    @include('components.SubHeader')
     @yield('content')
     @yield('scripts')
 </body>
