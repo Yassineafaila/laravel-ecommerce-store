@@ -1,12 +1,13 @@
 @extends('layouts.layout')
 @section('content')
-    <section class="px-4 mt-3">
+    <section class="px-4 mt-3 hero">
         @if (isset($error))
             <div class="container mx-auto flex items-center justify-center h-full">
                 <p class="text-base">{{ $error }} :C</p>
             </div>
         @else
-            <div class="container mx-auto  ">
+            <div class="container mx-auto  py-4">
+                {{-- <a href="/" class="inline-block mt-3 mb-3 text-gray-400">/home</a> --}}
                 <div class="header-info flex items-center justify-between mb-5 w-full">
                     <div>
                         <a href="/" class="block  rounded-full px-2.5 py-1.5 md:py-1.5 border-2"> <i

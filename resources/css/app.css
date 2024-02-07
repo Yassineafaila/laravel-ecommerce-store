@@ -26,10 +26,13 @@ a {
     transition: 0.2s color;
 }
 
-
 ul,
 ol {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+.hero {
+    /* height: calc(100vh - 122px); */
+    height: auto;
 }
