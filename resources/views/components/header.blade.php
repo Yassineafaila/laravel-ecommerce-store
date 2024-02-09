@@ -13,16 +13,17 @@
         </button>
     </div>
 
-    <form class="hidden h-9 w-2/5 items-center border md:flex">
+    <form action="/" class="hidden h-9 w-2/5 items-center border md:flex">
+        @csrf
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="mx-3 h-4 w-4">
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
 
-        <input class="hidden w-11/12 outline-none md:block" type="search" placeholder="Search" />
+        <input class="hidden w-11/12 outline-none md:block" type="search" placeholder="Search" name="search" />
 
-        <button class="ml-auto h-full bg-amber-400 px-4 hover:bg-yellow-300">
+        <button type="submit" class="ml-auto h-full bg-amber-400 px-4 hover:bg-yellow-300">
             Search
         </button>
     </form>
@@ -162,7 +163,7 @@
                 <!-- Categories Dropdown -->
                 <div id="categoriesDropdown" class="hidden  absolute top-full w-full bg-white shadow-md  py-1  z-10">
                     @foreach ($categories as $category)
-                        <a href="#"
+                        <a href="/?category={{ $category->name }}"
                             class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200">{{ $category->name }}</a>
                     @endforeach
                 </div>

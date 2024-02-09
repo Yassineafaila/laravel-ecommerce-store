@@ -17,6 +17,8 @@ use App\Http\Controllers\ProfileController;
 //Get All The Products
 Route::get("/", [ProductController::class, "index"]);
 
+//handle the liked action for a product
+// Route::post('/products/{product}/like', [ProductController::class, "likeProduct"])->middleware("auth");
 //Get Single Product
 Route::get("/products/{name}", [ProductController::class, "show"]);
 
@@ -25,9 +27,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/products/{product}/like', [ProductController::class, 'likeProduct']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

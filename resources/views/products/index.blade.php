@@ -5,7 +5,7 @@
     @include('components.hero')
     <section class="px-4 mt-4 py-4 ">
         <div class="container mx-auto flex items-center justify-center">
-            <h2 class="md:text-2xl py-4 text-center">Latest Products</h2>
+            <h2 class="md:text-2xl py-4 self-start">Latest Products</h2>
         </div>
         <div
             class="container mx-auto grid gap-5 md:gap-4 lg:gap-5 xl:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -46,11 +46,13 @@
                                     class="me-2"><i class="fa-solid fa-cart-shopping"></i></span>Add
                                 To Cart </button>
                         </form>
-                        <form method="POST">
-                            <button type="submit"
-                                class="absolute  top-5 right-5 bg-white px-2 py-1 w-8 h-8 rounded-full flex items-center justify-center"><i
-                                    class="fa-regular fa-heart text-red-500"></i></button>
-                        </form>
+
+                        <button type="submit"
+                            class=" like-button absolute  top-5 right-5 bg-white px-2 py-1 w-8 h-8 rounded-full flex items-center justify-center z-50"
+                            data-product="{{ $product->id }}">
+                            <i class="fa-regular fa-heart text-red-500"></i>
+                        </button>
+
                     </div>
 
                     <div>
@@ -76,6 +78,34 @@
                 $(`.more-btn${event.currentTarget.id}`).addClass("hidden").removeClass("flex")
 
             })
+
+            //handle the like product action
+            $(".like-button").on("click", function() {
+                let product = $(this).data("product");
+                $.ajax({
+                    method: "post",
+                    url: `/products/${product}/like`,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    success: function(response) {
+                        // Handle success response
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        if (xhr.status === 401) {
+                            // User is unauthenticated, redirect to login page
+                            window.location.href = '/login';
+                        } else {
+                            // console.error(xhr.responseText);
+                            return null
+                        }
+                    }
+                });
+            });
+
         })
     </script>
 @endsection

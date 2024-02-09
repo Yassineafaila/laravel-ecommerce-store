@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\UserProduct;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     //Show All the Products
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+
+        $products = Product::latest()->filter(request(["category", "search"]))->paginate();
 
         return view("products.index", ["products" => $products]);
     }
@@ -28,16 +30,37 @@ class ProductController extends Controller
         return view('products.show', ['product' => $product]);
     }
 
-    //Check The Quantity Of The Product
-    public function checkQuantity(Product $product, Request $request)
+    //handle the liked action for a product
+    public function likeProduct(Product $product, Request $request)
     {
-        // dd($product,$request);
-        $quantity = $request->quantity;
-        $stockIn = $product->stockQuantity;
-        if ((int)$quantity > (int)$stockIn) {
-            return response()->json(["error", "Stock Not Enough For This Quantity"]);
+        // Check if the user is authenticated
+        if (auth()->check()) {
+            $user = auth()->user();
+
+            // Check if the user has already liked the product
+            $existingLike = UserProduct::where('user_id', $user->id)
+                ->where('product_id', $product->id)
+                ->exists();
+
+            if (!$existingLike) {
+                // If the user has not liked the product already, insert the relationship
+                UserProduct::create([
+                    'user_id' => $user->id,
+                    'product_id' => $product->id,
+                ]);
+
+                // Increment the number of likes for the product if needed
+                $product->numberOfLikes++;
+                $product->save();
+
+                return response()->json(['message' => 'Product liked successfully'], 200);
+            } else {
+                // If the user has already liked the product, return a response indicating that
+                return response()->json(['error' => 'User has already liked this product'], 400);
+            }
         } else {
-            return null;
+            // If user is not authenticated, return a response indicating the user needs to authenticate
+            return response()->json(['error' => 'User not authenticated'], 401);
         }
     }
 }
