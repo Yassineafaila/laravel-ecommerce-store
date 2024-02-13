@@ -22,9 +22,12 @@ Route::get("/", [ProductController::class, "index"]);
 //Get Single Product
 Route::get("/products/{name}", [ProductController::class, "show"]);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::prefix("dashboard")->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get("/", function () {
+        return view("admin.dashboard");
+    });
+});
 
 Route::middleware('auth')->group(function () {
     Route::post('/products/{product}/like', [ProductController::class, 'likeProduct']);

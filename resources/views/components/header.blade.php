@@ -50,7 +50,7 @@
                 <p class="text-xs">Cart</p>
             </a>
 
-            <a href="account-page.html" class="relative flex cursor-pointer flex-col items-center justify-center">
+            <div class="relative flex cursor-pointer flex-col items-center justify-center w-full">
                 <span class="absolute bottom-[33px] right-1 flex h-2 w-2">
                     <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
                     <span class="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
@@ -62,8 +62,27 @@
                         d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
 
-                <p class="text-xs">Account</p>
-            </a>
+                <button class="show-account-menu text-xs">Account</button>
+                <div id="accountDropdown" class="hidden w-64  absolute top-full  bg-white shadow-md  py-1  z-10">
+                    <p class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">
+                        <span>{{ auth()->user()->firstName }}</span><span>{{ auth()->user()->lastName }}</span>
+                    </p>
+                    <a href="#" class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Profile</a>
+                    @if (auth()->user()->hasRole('admin'))
+                        <div>
+                            <a href="/dashboard?isAdmin={{ auth()->user()->hasRole('admin') ? 'true' : 'false' }}"
+                                class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200">Dashboard</a>
+
+                        </div>
+                    @endif
+
+
+                    <a href="#"
+                        class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Settings</a>
+
+
+                </div>
+            </div>
         @endauth
     </div>
 </header>
@@ -94,7 +113,7 @@
                     <p class="text-xs">Cart</p>
                 </a>
 
-                <a href="account-page.html" class="relative flex cursor-pointer flex-col items-center justify-center">
+                <div class="relative flex cursor-pointer flex-col items-center justify-center">
                     <span class="absolute bottom-[33px] right-1 flex h-2 w-2">
                         <span
                             class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
@@ -107,8 +126,16 @@
                             d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
 
-                    <p class="text-xs">Account</p>
-                </a>
+                    <div class="flex flex-col">
+                        <button class="text-xs ">Account</button>
+                        <div id="accountDropdown" class="hidden  absolute top-full w-full bg-white shadow-md  py-1  z-10">
+                            <a href="#"
+                                class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Profile</a>
+                            <a href="#"
+                                class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Settings</a>
+                        </div>
+                    </div>
+                </div>
             @endauth
         </div>
 
@@ -221,5 +248,9 @@
             $('#mobileMenu').toggleClass("hidden block")
         });
 
+        // Toggle account options dropdwon
+        $(".show-account-menu ").click(function() {
+            $("#accountDropdown").toggle()
+        })
     });;
 </script>

@@ -10,5 +10,5 @@ class UserProduct extends Model
     use HasFactory;
 
     protected $table = 'user_liked_product';
-    protected $fillable = ["user_id", "product_id"];
+    protected $fillable = ["user_id","product_id"];
 }

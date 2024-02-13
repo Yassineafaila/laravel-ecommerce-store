@@ -96,6 +96,7 @@
                                     <img class="w-10 md:block h-10 rounded-full border border-yellow-500"
                                         src="{{ $review->user->avatar ? asset('storage/' . $review->user->avatar) : asset('/images/no-image.jpg') }}"
                                         alt="user-profile" />
+
                                     <div class="flex items-center flex-col">
                                         <span
                                             class="font-bold">{{ $review->user->firstName }}{{ $review->user->lastName }}</span>
