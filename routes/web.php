@@ -19,15 +19,14 @@ Route::get("/", [ProductController::class, "index"]);
 
 //handle the liked action for a product
 // Route::post('/products/{product}/like', [ProductController::class, "likeProduct"])->middleware("auth");
-//Get Single Product
-Route::get("/products/{name}", [ProductController::class, "show"]);
 
 
-Route::prefix("dashboard")->middleware(['auth', 'role:admin'])->group(function () {
-    Route::get("/", function () {
-        return view("admin.dashboard");
-    });
-});
+
+// Route::prefix("dashboard")->middleware(['auth', 'role:admin'])->group(function () {
+//     Route::get("/", function () {
+//         return view("admin.dashboard");
+//     });
+// });
 
 Route::middleware('auth')->group(function () {
     Route::post('/products/{product}/like', [ProductController::class, 'likeProduct']);
@@ -35,5 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+//Get Single Product
+Route::get("/products/{name}", [ProductController::class, "show"]);
 require __DIR__ . '/auth.php';

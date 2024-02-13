@@ -63,35 +63,35 @@
                     <div class="mt-5 h-0 flex-1 overflow-y-auto">
                         <nav class="space-y-1 px-2">
                             <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-                            <a href="#"
-                                class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                                <svg class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                </svg>
-                                Home
-                            </a>
+                            <a href="/admin/dashboard"
+                            class="bg-red-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                            </svg>
+                            Home
+                        </a>
 
-                            <a href="#"
-                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                                <i class="fa-brands fa-product-hunt"></i>
-                                Manage Products
-                            </a>
+                        <a href="/admin/dashboard/manage_products"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                            Manage Products
+                        </a>
 
-                            <a href="#"
-                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                                <!-- Heroicon name: outline/folder -->
-                                <i class="fa-solid fa-user"></i>
-                                Manage users
-                            </a>
+                        <a href="/admin/dashboard/manage_users"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <!-- Heroicon name: outline/folder -->
+                            <i class="fa-solid fa-user  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                            Manage users
+                        </a>
 
-                            <a href="#"
-                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                                <i class="fa-solid fa-list"></i>
-                                Manage Categories
-                            </a>
+                        <a href="/admin/dashboard/manage_categories"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                            Manage Categories
+                        </a>
 
                             {{-- //manage also orders --}}
                         </nav>
@@ -116,8 +116,8 @@
                 <div class="mt-5 flex flex-grow flex-col">
                     <nav class="flex-1 space-y-1 px-2 pb-4">
                         <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-                        <a href="#"
-                            class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <a href="/admin/dashboard"
+                            class="bg-red-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <svg class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                 aria-hidden="true">
@@ -127,22 +127,22 @@
                             Home
                         </a>
 
-                        <a href="#"
-                            class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-brands fa-product-hunt"></i>
+                        <a href="/admin/dashboard/manage_products"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
                             Manage Products
                         </a>
 
-                        <a href="#"
-                            class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <a href="/admin/dashboard/manage_users"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <!-- Heroicon name: outline/folder -->
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-user  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
                             Manage users
                         </a>
 
-                        <a href="#"
-                            class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-solid fa-list"></i>
+                        <a href="/admin/dashboard/manage_categories"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
                             Manage Categories
                         </a>
 
@@ -186,7 +186,7 @@
                     </div>
                     <div class="ml-4 flex items-center md:ml-6">
                         <button type="button"
-                            class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:border-2 focus:border-red-500">
                             <span class="sr-only">View notifications</span>
                             <!-- Heroicon name: outline/bell -->
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -200,7 +200,7 @@
                         <div class="relative ml-3">
                             <div>
                                 <button type="button"
-                                    class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none  focus:border-2 focus:border-red-500"
                                     id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user menu</span>
                                     <img class="h-8 w-8 rounded-full"
@@ -234,6 +234,7 @@
                     </div>
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                         <!-- Replace with your content -->
+                        @yield('content')
                         <div class="py-4">
                             <div class="h-96 rounded-lg border-4 border-dashed border-gray-200"></div>
                         </div>
