@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 */
 //Get All The Products
 Route::get("/", [ProductController::class, "index"]);
+
 //Display Contact Us page
 Route::get("/contact-us", function () {
     return view("pages.ContactUs");
@@ -23,8 +24,10 @@ Route::get("/contact-us", function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/products/{product}/like', [ProductController::class, 'likeProduct']);
+    Route::post('/products/{product}/unfavorite', [ProductController::class, "unLikedProduct"]);
+    Route::get("/products/wish-list", [ProductController::class, "getLikedProducts"]);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 //Get Single Product
