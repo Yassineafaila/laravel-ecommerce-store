@@ -87,51 +87,9 @@
                     </div>
                 </div>
                 {{-- --reviews---- --}}
-                <div class="container mx-auto mt-4">
-                    <h3 class="border-l-4 border-red-500 px-2.5 mb-4">Reviews ({{ count($product->reviews) }})</h3>
-                    @foreach ($product->reviews as $review)
-                        <div class="border border-gray-400 rounded shadow flex flex-col gap-5 max-w-96 py-3 px-3">
-                            <div class="flex  items-center justify-between">
-                                <div class="flex items-center gap-3 md:gap-3">
-                                    <img class="w-10 md:block h-10 rounded-full border border-yellow-500"
-                                        src="{{ $review->user->avatar ? asset('storage/' . $review->user->avatar) : asset('/images/no-image.jpg') }}"
-                                        alt="user-profile" />
-
-                                    <div class="flex items-center flex-col">
-                                        <span
-                                            class="font-bold">{{ $review->user->firstName }}{{ $review->user->lastName }}</span>
-                                        <div class="">
-                                            @if (is_int($review->rating))
-                                                @for ($i = 0; $i < $product->rating; $i++)
-                                                    <span><i
-                                                            class="fa-solid fa-star text-yellow-400 text-xs md:text-sm"></i></span>
-                                                @endfor
-                                            @else
-                                                @for ($i = 0; $i < (int) $product->rating; $i++)
-                                                    <span><i
-                                                            class="fa-solid fa-star text-yellow-400 text-xs md:text-sm"></i></span>
-                                                @endfor
-                                                <span><i
-                                                        class="fa-solid fa-star-half-stroke text-yellow-400 text-xs md:text-sm"></i></span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                @php
-                                    $date = Carbon\Carbon::parse($review->created_at);
-                                    $elapsed = $date->diffForHumans();
-                                @endphp
-                                <span class="text-gray-400 text-sm md:text-base">{{ $elapsed }}</span>
-                            </div>
-                            <div>
-                                <p class="text-gray-800 text-sm md:text-base">{{ $review->comment }}</p>
-                            </div>
-                        </div>
-
-                </div>
-        @endforeach
-        </div>
-        </div>
+                <x-reviews :reviews="$product->reviews" />
+            </div>
+            </div>
         @endif
     </section>
 
