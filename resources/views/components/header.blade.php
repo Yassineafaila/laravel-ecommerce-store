@@ -156,7 +156,7 @@
             <li class="py-2"><a href="index.html">Home</a></li>
             <li class="py-2 md:hidden"><a href="catalog.html">Catalog</a></li>
             <li class="py-2"><a href="about-us.html">About Us</a></li>
-            <li class="py-2"><a href="contact-us.html">Contact Us</a></li>
+            <li class="py-2"><a href="/contact-us">Contact Us</a></li>
             @auth
                 <div></div>
             @else
@@ -207,7 +207,7 @@
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
                 href="about-us.html">About Us</a>
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="contact-us.html">Contact Us</a>
+                href="/contact-us">Contact Us</a>
         </div>
 
         @auth

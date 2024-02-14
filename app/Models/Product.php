@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = ["name", "description", "rating", "price", "image", "numberOfLikes", "stockQuantity"];
     //this function is feltring the product :
     public function scopeFilter($query, array $filters)
     {

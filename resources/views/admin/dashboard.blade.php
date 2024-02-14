@@ -21,7 +21,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    {{-- ----select2-cdn----- --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- ---csrf-token------ --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- ---tailwind--- --}}
@@ -64,34 +70,55 @@
                         <nav class="space-y-1 px-2">
                             <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
                             <a href="/admin/dashboard"
-                            class="bg-red-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <svg class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                            </svg>
-                            Home
-                        </a>
+                                class="bg-red-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <svg class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                </svg>
+                                Home
+                            </a>
 
-                        <a href="/admin/dashboard/manage_products"
-                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage Products
-                        </a>
+                            <a href="/admin/dashboard/manage_products"
+                                class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i
+                                    class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                                Manage Products
+                            </a>
 
-                        <a href="/admin/dashboard/manage_users"
-                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <!-- Heroicon name: outline/folder -->
-                            <i class="fa-solid fa-user  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage users
-                        </a>
+                            <a href="/admin/dashboard/manage_users"
+                                class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <!-- Heroicon name: outline/folder -->
+                                <i class="fa-solid fa-user  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                                Manage users
+                            </a>
 
-                        <a href="/admin/dashboard/manage_categories"
-                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage Categories
-                        </a>
+                            <a href="/admin/dashboard/manage_categories"
+                                class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                                Manage Categories
+                            </a>
+                            <a href="/admin/profile"
+                                class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+
+                                <i
+                                    class="fa-solid fa-address-card text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                                Profile
+                            </a>
+                            <a href=""
+                                class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fa-solid fa-gear  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                                Settings
+                            </a>
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit"
+                                    class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">Logout
+                                    <i
+                                        class="fa-solid fa-right-from-bracket text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl "></i>
+                                    Logout</button>
+                            </form>
 
                             {{-- //manage also orders --}}
                         </nav>
@@ -128,7 +155,7 @@
                         </a>
 
                         <a href="/admin/dashboard/manage_products"
-                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            class="text-gray-600 hover:bg-red-200  hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <i class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
                             Manage Products
                         </a>
@@ -145,6 +172,25 @@
                             <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
                             Manage Categories
                         </a>
+                        <a href="/admin/profile"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+
+                            <i class="fa-solid fa-address-card text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                            Profile
+                        </a>
+                        <a href=""
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fa-solid fa-gear  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                            Settings
+                        </a>
+                        <form method="POST" action="/logout">
+                            @csrf
+                            <button type="submit"
+                                class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i
+                                    class="fa-solid fa-right-from-bracket text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl "></i>
+                                Logout</button>
+                        </form>
 
                         {{-- //manage also orders --}}
                     </nav>
@@ -227,23 +273,21 @@
                 </div>
             </div>
 
-            <main class="flex-1">
+            <main class="flex-1 w-full">
                 <div class="py-6">
-                    <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+                    {{-- <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                         <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
-                    </div>
-                    <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                        <!-- Replace with your content -->
+                    </div> --}}
+                    <div class="mx-auto w-full px-4 sm:px-6 md:px-8">
                         @yield('content')
-                        <div class="py-4">
-                            <div class="h-96 rounded-lg border-4 border-dashed border-gray-200"></div>
-                        </div>
-                        <!-- /End replace -->
+
                     </div>
                 </div>
             </main>
         </div>
     </div>
+    {{-- ----scritps-js-- --}}
+    @yield('scripts')
     <script>
         $(document).ready(function() {
             $("#user-menu-button").on("click", function() {

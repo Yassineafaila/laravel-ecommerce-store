@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -14,8 +15,8 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-        $categories=Category::all();
-        return view("admin.categories.index",["categories"=>$categories]);
+        $categories = Category::all();
+        return view("admin.categories.index", ["categories" => $categories]);
     }
 
     /**
@@ -23,7 +24,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        //pass to the admin all the categories
+        $categories = Category::all();
+        return view('admin.categories.create', ["categories" => $categories]);
     }
 
     /**
@@ -32,6 +35,13 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        $formFields = $request->validate([
+            "name" => "required|min:3"
+        ]);
+        if (Auth::user()->hasRole("admin")) {
+            $category = Category::create($formFields);
+            return redirect("/admin/dashboard")->with(["success", "category created successfully"]);
+        }
     }
 
     /**
@@ -61,8 +71,12 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Category $category)
     {
         //
+        if (Auth::user()->hasRole("admin")) {
+            $category->delete();
+            return redirect("/admin/dashboard")->with("success", "The Category Deleted Successfully");
+        }
     }
 }

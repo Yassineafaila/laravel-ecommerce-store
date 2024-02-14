@@ -14,7 +14,12 @@
                 <div class="product-card pb-1.5 relative rounded-md border md:shadow-md lg:shadow-lg xl:shadow-xl "
                     id="{{ $product->id }}">
                     <div class="img-container overflow-hidden relative ">
-                        <img src="{{ asset("$product->image") }}" class="product-image hover:scale-110 duration-300" />
+                        {{-- <img src="{{ asset("$product->image") }}" class="product-image hover:scale-110 duration-300" /> --}}
+                        @php
+                            $subString = 'images';
+                        @endphp
+                        <img src="{{ strpos($product->image, $subString) === 0 ? asset("$product->image") : asset('storage/' . $product->image) }}"
+                            class="h-64 w-full" />
                     </div>
 
                     <div class="product-info px-3 py-2  ">

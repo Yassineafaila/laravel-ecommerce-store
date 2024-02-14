@@ -16,17 +16,10 @@ use App\Http\Controllers\ProfileController;
 */
 //Get All The Products
 Route::get("/", [ProductController::class, "index"]);
-
-//handle the liked action for a product
-// Route::post('/products/{product}/like', [ProductController::class, "likeProduct"])->middleware("auth");
-
-
-
-// Route::prefix("dashboard")->middleware(['auth', 'role:admin'])->group(function () {
-//     Route::get("/", function () {
-//         return view("admin.dashboard");
-//     });
-// });
+//Display Contact Us page
+Route::get("/contact-us", function () {
+    return view("pages.ContactUs");
+});
 
 Route::middleware('auth')->group(function () {
     Route::post('/products/{product}/like', [ProductController::class, 'likeProduct']);
