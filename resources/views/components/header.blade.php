@@ -29,7 +29,7 @@
     </form>
 
     <div class="hidden gap-3 md:!flex">
-        <a href="wishlist.html" class="flex cursor-pointer flex-col items-center justify-center">
+        <a href="/products/wish-list" class="flex cursor-pointer flex-col items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="h-6 w-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -65,9 +65,12 @@
                 <button class="show-account-menu text-xs">Account</button>
                 <div id="accountDropdown" class="hidden w-64  absolute top-full  bg-white shadow-md  py-1  z-10">
                     <p class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">
+                        <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : null }}"
+                            class="w-7 h-7 rounded-full object-fill outline outline-1 me-2 outline-red-500  inline" />
                         <span>{{ auth()->user()->firstName }}</span><span>{{ auth()->user()->lastName }}</span>
                     </p>
-                    <a href="#" class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Profile</a>
+                    <a href="/profile"
+                        class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Profile</a>
                     @if (auth()->user()->hasRole('admin'))
                         <div>
                             <a href="/admin/dashboard?isAdmin={{ auth()->user()->hasRole('admin') ? 'true' : 'false' }}"
@@ -77,7 +80,7 @@
                     @endif
 
 
-                    <a href="#"
+                    <a href="/settings"
                         class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Settings</a>
 
 
@@ -92,7 +95,7 @@
 <section id="mobileMenu" class="hidden absolute left-0 right-0 z-50 h-full w-full bg-white md:hidden">
     <div class="mx-auto">
         <div class="mx-auto flex w-full justify-center gap-3 py-4">
-            <a href="wishlist.html" class="flex cursor-pointer flex-col items-center justify-center">
+            <a href="/products/wish-list" class="flex cursor-pointer flex-col items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="h-6 w-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -129,9 +132,9 @@
                     <div class="flex flex-col">
                         <button class="text-xs ">Account</button>
                         <div id="accountDropdown" class="hidden  absolute top-full w-full bg-white shadow-md  py-1  z-10">
-                            <a href="#"
+                            <a href="/profile"
                                 class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Profile</a>
-                            <a href="#"
+                            <a href="/settings"
                                 class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Settings</a>
                         </div>
                     </div>
@@ -153,7 +156,7 @@
             </button>
         </form>
         <ul class="text-center font-medium">
-            <li class="py-2"><a href="index.html">Home</a></li>
+            <li class="py-2"><a href="/">Home</a></li>
             <li class="py-2 md:hidden"><a href="catalog.html">Catalog</a></li>
             <li class="py-2"><a href="about-us.html">About Us</a></li>
             <li class="py-2"><a href="/contact-us">Contact Us</a></li>
@@ -201,7 +204,7 @@
 
         <div class="mx-7 flex gap-8">
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="index.html">Home</a>
+                href="/">Home</a>
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline md:hidden"
                 href="catalog.html">Catalog</a>
             <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
