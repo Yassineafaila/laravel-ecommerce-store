@@ -53,8 +53,9 @@
 
     {{-- ---header--- --}}
     @include('components.header')
-
-    @yield('content')
+    <main class="main flex  flex-col justify-between">
+        @yield('content')
+    </main>
     {{-- ---footer---- --}}
     @include('components.footer')
 
