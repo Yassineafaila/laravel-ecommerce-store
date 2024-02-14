@@ -23,9 +23,9 @@
                 <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
             </svg>
             <div class="text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
-                <p class="mt-4 text-lg leading-6 text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris
-                    volutpat massa dictumst amet. Sapien tortor lacus arcu.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>
+                <p class="mt-4 text-lg leading-6 text-gray-500">Alternatively, you can fill out the form below, and we'll
+                    get back to you as soon as possible.</p>
             </div>
             <div class="mt-12">
                 <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
@@ -33,28 +33,23 @@
                         <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
                         <div class="mt-1">
                             <input type="text" name="first-name" id="first-name" autocomplete="given-name"
-                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm border hover:border-red-500 focus:outline-none">
                         </div>
                     </div>
                     <div>
                         <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
                         <div class="mt-1">
                             <input type="text" name="last-name" id="last-name" autocomplete="family-name"
-                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm border hover:border-red-500 focus:outline-none">
                         </div>
                     </div>
-                    <div class="sm:col-span-2">
-                        <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                        <div class="mt-1">
-                            <input type="text" name="company" id="company" autocomplete="organization"
-                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        </div>
-                    </div>
+
                     <div class="sm:col-span-2">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <div class="mt-1">
                             <input id="email" name="email" type="email" autocomplete="email"
-                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                placeholder="example@gmail.com"
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm border hover:border-red-500 focus:outline-none">
                         </div>
                     </div>
                     <div class="sm:col-span-2">
@@ -63,22 +58,22 @@
                             <div class="absolute inset-y-0 left-0 flex items-center">
                                 <label for="country" class="sr-only">Country</label>
                                 <select id="country" name="country"
-                                    class="h-full rounded-md border-transparent bg-transparent py-0 pl-4 pr-8 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500">
-                                    <option>US</option>
-                                    <option>CA</option>
-                                    <option>EU</option>
+                                    class="h-full rounded-md border-transparent bg-transparent py-0 pl-4 pr-8 text-gray-500 border hover:border-red-500 focus:outline-none">
+                                    <option>MA</option>
+                                    <option>TU</option>
+                                    <option>AL</option>
                                 </select>
                             </div>
                             <input type="text" name="phone-number" id="phone-number" autocomplete="tel"
-                                class="block w-full rounded-md border-gray-300 py-3 px-4 pl-20 focus:border-indigo-500 focus:ring-indigo-500"
-                                placeholder="+1 (555) 987-6543">
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 pl-20 border hover:border-red-500 focus:outline-none"
+                                placeholder="+212 (555) 987-6543">
                         </div>
                     </div>
                     <div class="sm:col-span-2">
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                         <div class="mt-1">
                             <textarea id="message" name="message" rows="4"
-                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm border"></textarea>
                         </div>
                     </div>
                     <div class="sm:col-span-2">
@@ -106,8 +101,8 @@
                     </div>
                     <div class="sm:col-span-2">
                         <button type="submit"
-                            class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Let's
-                            talk</button>
+                            class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none">Send
+                        </button>
                     </div>
                 </form>
             </div>
