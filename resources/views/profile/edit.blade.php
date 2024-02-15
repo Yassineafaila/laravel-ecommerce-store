@@ -24,6 +24,9 @@
                         <input type="text" name="firstName" id="fname"
                             class="block w-full rounded-md border border-gray-500 shadow-sm focus:border-red-500 focus:outline-none py-3 px-4  sm:text-sm"
                             placeholder="First Name" value="{{ $user->firstName }}">
+                        @error('firstName')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div>
@@ -32,6 +35,9 @@
                         <input type="text" name="lastName" id="lname"
                             class="block w-full rounded-md border border-gray-500 shadow-sm focus:border-red-500 focus:outline-none py-3 px-4 sm:text-sm"
                             placeholder="First Name" value="{{ $user->lastName }}">
+                            @error('lastName')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="sm:col-span-2">
@@ -40,6 +46,9 @@
                         <input id="email" name="email" type="email" autocomplete="email"
                             placeholder="example@gmail.com" value="{{ $user->email }}"
                             class="block w-full rounded-md border-gray-500 py-3 px-4 shadow-sm border hover:border-red-500 focus:outline-none">
+                            @error('email')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
@@ -87,6 +96,9 @@
                         <input type="text" name="streetAddress" id="street-address" autocomplete="street-address"
                             class="block w-full rounded-md border border-gray-500 shadow-sm focus:border-red-500 focus:outline-none py-3 px-4  sm:text-sm"
                             value="{{ $user->street_address ? $user->street_address : null }}">
+                            @error('streetAddress')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -96,6 +108,9 @@
                         <input type="text" name="city" id="city" autocomplete="address-level2"
                             class="block w-full rounded-md border border-gray-500 shadow-sm focus:border-red-500 focus:outline-none py-3 px-4  sm:text-sm"
                             value="{{ $user->city ? $user->city : null }}">
+                            @error('city')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -106,6 +121,9 @@
                         <input type="text" name="state" id="region" autocomplete="address-level1"
                             class="block w-full rounded-md border border-gray-500 shadow-sm focus:border-red-500 focus:outline-none py-3 px-4  sm:text-sm"
                             value="{{ $user->state ? $user->state : null }}">
+                            @error('state')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -117,6 +135,9 @@
                         <input type="text" name="postalCode" id="postal-code" autocomplete="postal-code"
                             class="block w-full rounded-md border border-gray-500 shadow-sm focus:border-red-500 focus:outline-none py-3 px-4  sm:text-sm"
                             value="{{ $user->postalCode ? $user->postalCode : null }}">
+                            @error('postalCode')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
