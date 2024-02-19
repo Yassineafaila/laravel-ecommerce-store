@@ -27,6 +27,8 @@
     {{-- ---tailwind--- --}}
     @vite('resources/css/app.css')
     {{-- ---swiper---js --}}
+
+    @notifyCss
     <script src="{{ asset('js/app.js') }}"></script>
 
     <style>
@@ -50,7 +52,7 @@
 </head>
 
 <body class="bg-grey-200">
-
+    <x-notify::notify class="left-0"/>
     {{-- ---header--- --}}
     @include('components.header')
     <main class="main flex  flex-col justify-between">
@@ -71,6 +73,7 @@
             },
         });
     </script>
+    @notifyJs
     @yield('scripts')
 </body>
 

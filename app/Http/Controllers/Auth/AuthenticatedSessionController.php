@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        notify()->success('Logged In ');
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
+        notify()->success('Welcome to Laravel Notify ⚡️');
         return redirect('/');
     }
 }
