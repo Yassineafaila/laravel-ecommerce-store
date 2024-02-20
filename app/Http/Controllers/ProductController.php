@@ -68,7 +68,6 @@ class ProductController extends Controller
             // If user is not authenticated, return a response indicating the user needs to authenticate
             return response()->json(['error' => 'User not authenticated', 'message' => 'Please log in to unlike products'], 401);
         }
-
     }
 
     //handle the liked action for a product
@@ -94,10 +93,10 @@ class ProductController extends Controller
                 $product->numberOfLikes++;
                 $product->save();
 
-                return response()->json(['message' => 'Product liked successfully',"liked"=>true], 200);
+                return response()->json(['message' => 'Product liked successfully', "liked" => true], 200);
             } else {
                 // If the user has already liked the product, return a response indicating that
-                return response()->json(['error' => 'User has already liked this product',"liked"=>true], 400);
+                return response()->json(['error' => 'User has already liked this product', "liked" => true], 400);
             }
         } else {
             // If user is not authenticated, return a response indicating the user needs to authenticate
