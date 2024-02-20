@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get("/products/wish-list", [ProductController::class, "getLikedProducts"]);
     Route::get("/products/cart-shopping", [CartController::class, "index"]);
     Route::post("/products/cart/add-to-cart", [CartController::class, "store"]);
+    Route::post("/products/cart/calc-subTotal",[CartController::class,"calcSubTotal"]);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/settings', [ProfileController::class, 'show']);
