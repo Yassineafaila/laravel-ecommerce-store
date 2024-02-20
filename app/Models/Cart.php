@@ -9,6 +9,9 @@ class Cart extends Model
 {
     use HasFactory;
     protected $table = 'carts';
+    protected $primaryKey = null; // No primary key
+    public $incrementing = false; // Don't automatically increment a primary key
+    protected $keyType = null; // No primary key type
     protected $fillable = ["user_id", "product_id", "Quantity"];
 
     public function user()

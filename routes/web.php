@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -28,12 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/products/{product}/unfavorite', [ProductController::class, "unLikedProduct"]);
     Route::get("/products/wish-list", [ProductController::class, "getLikedProducts"]);
     Route::get("/products/cart-shopping", [CartController::class, "index"]);
+
     Route::post("/products/cart/add-to-cart", [CartController::class, "store"]);
-    Route::post("/products/cart/calc-subTotal",[CartController::class,"calcSubTotal"]);
+    Route::post("/products/cart/checkout", [OrderController::class, "index"]);
+    Route::post("/products/cart/calc-subTotal", [CartController::class, "calcSubTotal"]);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/settings', [ProfileController::class, 'show']);
     Route::post('/settings/update-password', [ProfileController::class, "updatePassword"]);
+    Route::delete("/products/cart-shopping/remove", [CartController::class, "delete"]);
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 //Get Single Product

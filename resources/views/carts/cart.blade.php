@@ -5,7 +5,8 @@
         <div class="mx-auto container max-w-[1200px] py-3 px-4 sm:py-10 sm:px-6 lg:px-5">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">Shopping Cart</h1>
 
-            <form class="mt-12">
+            <form class="mt-12" action="/products/cart/checkout" method="post">
+                @csrf
                 <div>
                     <h2 class="sr-only text-black">Items in your shopping cart</h2>
                     <ul role="list" class="divide-y divide-gray-200 border-t border-b border-gray-200">
@@ -34,8 +35,7 @@
                                             <p>
                                                 $
                                                 <input type="number" readonly name="price_{{ $item->product->id }}"
-                                                    value={{ $item->product->price }} disabled
-                                                    class="price bg-transparent" />
+                                                    value={{ $item->product->price }} class="price bg-transparent" />
                                             </p>
                                         </div>
 
@@ -50,10 +50,17 @@
                                                 @endfor
                                             </select>
 
-                                            <button type="button"
-                                                class="ml-4 text-sm font-medium text-red-600 hover:text-red-500 sm:ml-0 sm:mt-3">
-                                                <span>Remove</span>
-                                            </button>
+
+                                            <form method="post" action="/products/cart-shopping/remove">
+                                                @csrf
+                                                {{-- @method('delete') --}}
+                                                <input type="text" name="productId" value="{{ $item->product->id }}"
+                                                    hidden />
+                                                <button type="submit"
+                                                    class="ml-4 text-sm font-medium text-red-600 hover:text-red-500 sm:ml-0 sm:mt-3">
+                                                    <span>Remove</span>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
 
@@ -90,7 +97,7 @@
                                     <dt class="text-gray-600">Subtotal</dt>
                                     <p>
                                         $
-                                        <input type="number" readonly value="" disabled
+                                        <input type="number" name="subTotal" readonly value=0
                                             class="subTotal bg-transparent" />
                                     </p>
 
@@ -99,7 +106,7 @@
                                     <dt class="text-gray-600">Shipping</dt>
                                     <p>
                                         $
-                                        <input type="number" readonly value="5.00" disabled
+                                        <input type="number" name="shipping" readonly value="5.00"
                                             class="shipping bg-transparent" />
                                     </p>
 
@@ -109,15 +116,16 @@
 
                                     <p>
                                         $
-                                        <input type="number" readonly value="8.32" disabled class="tax bg-transparent" />
+                                        <input type="number" readonly name="tax" value="8.32"
+                                            class="tax bg-transparent" />
                                     </p>
                                 </div>
                                 <div class="flex items-center justify-between py-4">
                                     <dt class="text-base font-medium text-gray-900">Order total</dt>
-                                    {{-- <dd class="text-base font-medium text-gray-900">$112.32</dd> --}}
+
                                     <p>
                                         $
-                                        <input type="number" readonly value="" disabled
+                                        <input type="number" readonly name="total" value=0
                                             class="total bg-transparent" />
                                     </p>
                                 </div>
@@ -126,7 +134,9 @@
                     </div>
                     <div class="mt-10">
                         <button type="submit"
-                            class="w-full rounded-md border border-transparent bg-red-500 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
+                            class="w-full rounded-md border border-transparent bg-red-500 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+                            Checkout
+                        </button>
                     </div>
 
                     <div class="mt-6 text-center text-sm text-gray-500">
@@ -145,25 +155,33 @@
 @endsection
 @section('scripts')
     <script>
-        let prices = $(".price")
-        let subTotal = $(".subTotal")
-        let sum = 0
-        for (i = 0; i < prices.length; i++) {
-            sum += parseFloat(prices[i].value)
-        }
-        subTotal.val(sum)
-        
         $(document).ready(function() {
+            // Cache DOM elements
+            let prices = $(".price");
+            let subTotal = $(".subTotal");
+            let totalInput = $(".total");
+            let taxInput = $(".tax");
+            let shippingInput = $(".shipping");
+
+            function calculateTotal() {
+                let sum = 0;
+                prices.each(function() {
+                    sum += parseFloat($(this).val());
+                });
+                let subTotalValue = sum.toFixed(2);
+                subTotal.val(subTotalValue);
+                let totalValue = parseFloat(subTotalValue) + parseFloat(taxInput.val()) + parseFloat(shippingInput
+                    .val());
+                totalInput.val(totalValue.toFixed(2));
+            }
+
+            // Initial calculation
+            calculateTotal();
 
             $("[name='quantity-0']").on("change", function() {
-                let quantity = $(this).val()
-                let product = $(this).data("product")
-                let priceContainer = $(`[name='price_${product}']`)
-
-                for (i = 0; i < prices.length; i++) {
-                    sum += parseFloat(prices[i].value)
-                }
-                subTotal.val(sum)
+                let quantity = $(this).val();
+                let product = $(this).data("product");
+                let priceContainer = $(`[name='price_${product}']`);
                 $.ajax({
                     url: "/products/cart/calc-subTotal",
                     method: "post",
@@ -178,8 +196,8 @@
                     success: function(response) {
                         // Handle success response
                         if (response.subTotal) {
-
                             priceContainer.val(response.subTotal);
+                            calculateTotal();
                         }
                     },
                     error: function(xhr, status, error) {
@@ -188,14 +206,12 @@
                             // User is unauthenticated, redirect to login page
                             window.location.href = '/login';
                         } else {
-                            // console.error(xhr.responseText);
-                            return null
+                            // Display error message or log error
+                            console.error("Error occurred:", error);
                         }
                     }
-
-                })
-
-            })
-        })
+                });
+            });
+        });
     </script>
 @endsection

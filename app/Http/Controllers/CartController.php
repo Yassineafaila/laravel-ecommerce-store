@@ -50,12 +50,12 @@ class CartController extends Controller
             $productId = $request->product;
             $quantity = $request->quantity;
             // $productDetails = Product::where("id", "=", $productId)->get();
-            $productQuantity=Product::query()->where("id",$productId)->pluck("stockQuantity")->all();
-            $productPrice=Product::query()->where("id",$productId)->pluck("price")->all();
+            $productQuantity = Product::query()->where("id", $productId)->pluck("stockQuantity")->all();
+            $productPrice = Product::query()->where("id", $productId)->pluck("price")->all();
             if ($productQuantity[0] > 0) {
-                
-                $subTotal =round($productPrice[0] * $quantity,2);
-                
+
+                $subTotal = round($productPrice[0] * $quantity, 2);
+
                 return response()->json(['subTotal' => $subTotal], 200);
             } else {
                 return response()->json(['message' => 'product quantity not enough ', 'subTotal' => 0], 200);
@@ -64,5 +64,17 @@ class CartController extends Controller
             // If user is not authenticated, return a response indicating the user needs to authenticate
             return response()->json(['error' => 'User not authenticated', 'message' => 'Please log in to add products to your cart'], 401);
         }
+    }
+    //Delete The Product From Shopping Cart :
+    public function delete(Request $request)
+    {
+
+        $product = Cart::where("product_id", "=", $request->productId)->first();
+        // dd($product);
+        if ($product) {
+            $product->delete();
+        }
+
+        return view("carts.cart", ["cartItems" => Cart::all()]);
     }
 }
