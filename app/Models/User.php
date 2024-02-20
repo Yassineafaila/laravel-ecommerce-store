@@ -21,7 +21,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */ protected $fillable = [
-        'firstName', 'lastName', 'email', 'country', 'city', 'state', 'street_address', 'postalCode', 'avatar','password'
+        'firstName', 'lastName', 'email', 'country', 'city', 'state', 'street_address', 'postalCode', 'avatar', 'password'
     ];
 
     // public $incrementing = false;
@@ -48,6 +48,11 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
     }
     public function likedProducts()
     {
