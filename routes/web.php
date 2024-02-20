@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/products/{product}/like', [ProductController::class, 'likeProduct']);
     Route::post('/products/{product}/unfavorite', [ProductController::class, "unLikedProduct"]);
     Route::get("/products/wish-list", [ProductController::class, "getLikedProducts"]);
+    Route::get("/products/cart-shopping", [CartController::class, "index"]);
+    Route::post("/products/cart/add-to-cart", [CartController::class, "store"]);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/settings', [ProfileController::class, 'show']);
