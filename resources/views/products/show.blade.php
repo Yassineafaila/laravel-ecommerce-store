@@ -22,12 +22,15 @@
                                 class="fa-regular fa-heart text-red-500 ms-1.5 border rounded-full px-2 py-2 hover:bg-red-500 hover:text-white duration-300"></i></button>
                     </div>
                 </div>
-                <div class="flex flex-col lg:flex-row items-center  justify-between gap-4">
-                    <div class="img-container w-full lg:basis-full">
-                        <img src="{{ asset("$product->image") }}" alt="image of the product" class="block"
-                            class="w-full" />
+                <div class="flex flex-col lg:flex-row items-center justify-between">
+                    <div class="img-container">
+                        @php
+                            $subString = 'images';
+                        @endphp
+                        <img src="{{ strpos($product->image, $subString) === 0 ? asset("$product->image") : asset('storage/' . $product->image) }}"
+                            alt="image of the product" class="block" class="w-full" />
                     </div>
-                    <div>
+                    <div class="">
                         <div class="mb-4">
                             @foreach ($product->categories as $category)
                                 <span
