@@ -22,15 +22,12 @@
         <p class="text-sm font-medium text-gray-900">${{ $product->price }}</p>
 
     </div>
-    <div class="py-2">
-        <form method="POST">
-            <button type="submit"
-                class="bg-red-500 hover:bg-red-800 duration-300 text-white font-meduim py-1.5 px-3 rounded-sm md:rounded-md lg:rounded-md xl:rounded-md"><span
-                    class="me-2"><i class="fa-solid fa-cart-shopping"></i></span>Add
-                To Cart </button>
-        </form>
-        <button type="submit"
-            class=" like-button absolute  top-5 right-5 bg-white px-2 py-1 w-8 h-8 rounded-full flex items-center justify-center z-50"
+    <div class="py-2 absolute top-0 right-3 flex items-center gap-3">
+        <button type="button" data-product="{{ $product->id }}"
+            class="addToCart-btn bg-white px-2 py-1 w-8 h-8 rounded-full flex items-center justify-center z-50"><i
+                class="fa-solid fa-cart-shopping text-red-500"></i></button>
+        <button type="button"
+            class=" like-button  bg-white px-2 py-1 w-8 h-8 rounded-full flex items-center justify-center z-50"
             data-product="{{ $product->id }}"> <i class="fa-regular fa-heart  text-red-500"></i>
         </button>
     </div>
