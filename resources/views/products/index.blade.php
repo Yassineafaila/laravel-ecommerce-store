@@ -55,6 +55,39 @@
                     }
                 });
             });
+            //Handle Add To Cart
+            $(".addToCart-btn").on("click", function() {
+                let product = $(this).data("product");
+                console.log(product)
+                $.ajax({
+                    method: "post",
+                    url: "/products/cart/add-to-cart",
+                    data: {
+                        product: product
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    success: function(response) {
+                        // Handle success response
+                        if (response.cart === true) {
+                            console.log("added to cart successfully")
+                        }
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        if (xhr.status === 401) {
+                            // User is unauthenticated, redirect to login page
+                            window.location.href = '/login';
+                        } else {
+                            // console.error(xhr.responseText);
+                            return null
+                        }
+                    }
+                })
+            })
 
         })
     </script>
