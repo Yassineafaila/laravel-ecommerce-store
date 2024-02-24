@@ -27,6 +27,10 @@ class CartController extends Controller
             $user = auth()->user();
             $productId = $request->product;
             $quantity = $request->quantity ? $request->quantity : 1;
+            $productExists = Cart::where("product_id", $productId)->exists();
+            if ($productExists) {
+                return response()->json(["message" => "Product Already Exists in The Cart"]);
+            }
             Cart::create([
                 "user_id" => $user->id,
                 "product_id" => $productId,
@@ -42,20 +46,19 @@ class CartController extends Controller
     //Calc the subTotal
     public function calcSubTotal(Request $request)
     {
+        $productId = $request->product;
+        $quantity = $request->quantity;
+        $productQuantity = Product::query()->where("id", $productId)->pluck("stockQuantity")->all();
+        $productPrice = Product::query()->where("id", $productId)->pluck("price")->all();
         if (auth()->check()) {
-
             // User is authenticated, store cart data in the database
-            $user = auth()->user();
-
-            $productId = $request->product;
-            $quantity = $request->quantity;
-            // $productDetails = Product::where("id", "=", $productId)->get();
-            $productQuantity = Product::query()->where("id", $productId)->pluck("stockQuantity")->all();
-            $productPrice = Product::query()->where("id", $productId)->pluck("price")->all();
+            $userId = auth()->user()->id;
             if ($productQuantity[0] > 0) {
-
+                //change the quantity in the Cart Table
+                Cart::where([["user_id", $userId], ["product_id", $productId]])->update([
+                    "Quantity" => $quantity,
+                ]);
                 $subTotal = round($productPrice[0] * $quantity, 2);
-
                 return response()->json(['subTotal' => $subTotal], 200);
             } else {
                 return response()->json(['message' => 'product quantity not enough ', 'subTotal' => 0], 200);
@@ -68,13 +71,11 @@ class CartController extends Controller
     //Delete The Product From Shopping Cart :
     public function delete(Request $request)
     {
-
-        $product = Cart::where("product_id", "=", $request->productId)->first();
+        $product = Cart::where("product_id", "=", $request->productId)->delete();
         // dd($product);
         if ($product) {
-            $product->delete();
+            return view("carts.cart", ["cartItems" => Cart::all()]);
         }
-
-        return view("carts.cart", ["cartItems" => Cart::all()]);
+        return response()->json(["message" => "error while trying to remove the product"], 401);
     }
 }

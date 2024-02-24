@@ -3,7 +3,6 @@
     <a href="/" class="text-black font-bold md:text-2xl text-base">
         ElectroDev
     </a>
-
     <div class="md:hidden">
         <button id="mobileMenuBtnOpen">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

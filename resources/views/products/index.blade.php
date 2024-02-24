@@ -40,8 +40,10 @@
                         // Handle success response
                         if (response.liked === true) {
                             console.log("liked successfully")
+                        } else {
+                            console.log(response.error)
                         }
-                        console.log(response);
+
                     },
                     error: function(xhr, status, error) {
                         // Handle error response

@@ -13,7 +13,7 @@
                         class="w-full rounded-md border-white px-5 py-3 placeholder-gray-500 focus:outline-none "
                         placeholder="Enter your email">
                     <button type="submit"
-                        class="mt-3 flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-red-400 focus:outline-none  sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0">Notify
+                        class="mt-3 flex  items-center justify-center rounded-md border border-transparent bg-red-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-red-400 focus:outline-none  sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0">Notify
                         me</button>
                 </form>
                 <p class="mt-3 text-sm text-red-200">

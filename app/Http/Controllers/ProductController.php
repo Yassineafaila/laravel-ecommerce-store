@@ -96,7 +96,7 @@ class ProductController extends Controller
                 return response()->json(['message' => 'Product liked successfully', "liked" => true], 200);
             } else {
                 // If the user has already liked the product, return a response indicating that
-                return response()->json(['error' => 'User has already liked this product', "liked" => true], 400);
+                return response()->json(['error' => 'User has already liked this product', "liked" => false], 400);
             }
         } else {
             // If user is not authenticated, return a response indicating the user needs to authenticate

@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     //Show The Checkout Page
     public function index(Request $request)
     {
-        
-        // Accessing inputs from the form
-        $subTotal = $request->input('subTotal');
-        $shipping = $request->input('shipping');
-        $tax = $request->input('tax');
-        $total = $request->input('total');
-
-        return view("carts.checkoutForm");
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+        return view("carts.checkoutForm", ["cartItems" => $cartItems, "subTotal"=>$request->subTotal,"Total"=>$request->total]);
     }
 }
