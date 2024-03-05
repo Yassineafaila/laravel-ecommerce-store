@@ -159,6 +159,12 @@
                             <i class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
                             Manage Products
                         </a>
+                        <a href="/admin/dashboard/manage_orders"
+                            class="text-gray-600 hover:bg-red-200  hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i
+                                class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                            Manage Orders
+                        </a>
 
                         <a href="/admin/dashboard/manage_users"
                             class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
@@ -171,6 +177,11 @@
                             class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
                             Manage Categories
+                        </a>
+                        <a href="/admin/dashboard/manage_payments"
+                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
+                            Manage Payments
                         </a>
                         <a href="/admin/profile"
                             class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">

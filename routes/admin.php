@@ -5,12 +5,15 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get("/profile", [ProductController::class, "showProfile"]);
     Route::prefix("/dashboard")->group(function () {
         Route::get('/', [AdminController::class, 'showDashboard']);
+
+        //routes to manage products
         Route::prefix("/manage_products")->group(function () {
             Route::get("/", [ProductController::class, "index"]);
             Route::get("/categories", [ProductController::class, "getAllCategories"]);
@@ -20,6 +23,12 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
             Route::put("/{product}/edit", [ProductController::class, "update"]);
             Route::delete("/{product}/delete", [ProductController::class, "delete"]);
         });
+        // routes to manage orders
+        Route::prefix("/manage_orders")->group(function () {
+            Route::get("/", [OrderController::class, "index"]);
+        });
+
+        //routes to manage users
         Route::prefix("/manage_users")->group(function () {
             Route::get("/", [UserController::class, "index"]);
             Route::post("/create", [UserController::class, "create"]);
@@ -27,6 +36,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
             Route::put("/{user}/edit", [UserController::class, "update"]);
             Route::delete("/", [UserController::class, "delete"]);
         });
+
+        //routes to manage categories
         Route::prefix("/manage_categories")->group(function () {
             Route::get("/", [CategoriesController::class, "index"]);
 
