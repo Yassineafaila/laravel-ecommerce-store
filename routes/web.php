@@ -32,8 +32,15 @@ Route::middleware('auth')->group(function () {
 
     Route::post("/products/cart/add-to-cart", [CartController::class, "store"]);
     Route::post("/products/cart/checkout", [OrderController::class, "index"]);
+    Route::get("/products/cart/checkout", [OrderController::class, "index"]);
+    Route::post("/products/cart/confirm-order", [OrderController::class, "store"]);
+    Route::get("/products/cart/confirm-order-failed", [OrderController::class, "cancel"])->name("cancel");
+    Route::get("/products/cart/confirm-order-success", [OrderController::class, "success"])->name("success");
     Route::post("/products/cart/calc-subTotal", [CartController::class, "calcSubTotal"]);
     Route::post("/products/cart-shopping/remove", [CartController::class, "delete"]);
+    Route::get("/products/order-summary", [OrderController::class, "getAllTheOrders"]);
+    Route::delete("/products/order-summary", [OrderController::class, "cancelOrder"]);
+    Route::get("/products/order-summary/{order}/order-details", [OrderController::class, "getAllOrderDetails"]);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/settings', [ProfileController::class, 'show']);

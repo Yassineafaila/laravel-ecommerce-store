@@ -29,7 +29,7 @@
     {{-- ---swiper---js --}}
 
     @notifyCss
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
     <style>
         .swiper-container {
@@ -52,7 +52,7 @@
 </head>
 
 <body class="bg-grey-200">
-    <x-notify::notify class="left-0"/>
+    <x-notify::notify class="left-0" />
     {{-- ---header--- --}}
     @include('components.header')
     <main class="main flex  flex-col justify-between">

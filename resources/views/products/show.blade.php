@@ -6,7 +6,7 @@
                 <p class="text-base">{{ $error }} :C</p>
             </div>
         @else
-            <div class="container mx-auto  py-4">
+            <div class="container mx-auto  py-4 max-w-[1200px]">
                 {{-- <a href="/" class="inline-block mt-3 mb-3 text-gray-400">/home</a> --}}
                 <div class="header-info flex items-center justify-between mb-5 w-full">
                     <div>

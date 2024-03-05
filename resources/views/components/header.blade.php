@@ -78,11 +78,12 @@
                         </div>
                     @endif
 
-
+                    @if (count(auth()->user()->orders) > 0)
+                        <a href="/products/order-summary"
+                            class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200">My Orders</a>
+                    @endif
                     <a href="/settings"
                         class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Settings</a>
-
-
                 </div>
             </div>
         @endauth

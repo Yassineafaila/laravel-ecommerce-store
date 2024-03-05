@@ -36,7 +36,8 @@
                                                 <p>
                                                     $
                                                     <input type="number" readonly name="price_{{ $item->product->id }}"
-                                                        value={{ $item->product->price }} class="price bg-transparent" />
+                                                        value={{ $item->product->price * $item->Quantity }}
+                                                        class="price bg-transparent" />
                                                 </p>
                                             </div>
 
@@ -45,8 +46,8 @@
                                                 <label for="quantity-0" class="sr-only">{{ $item->product->name }}</label>
 
                                                 <input type="number" id="quantity" name="quantity"
-                                                    data-product="{{ $item->product->id }}" min=1 value=1
-                                                    max={{ $item->product->stockQuantity }}
+                                                    data-product="{{ $item->product->id }}" min=1
+                                                    value="{{ $item->Quantity }}" max={{ $item->product->stockQuantity }}
                                                     class="block max-w-full rounded-md border border-gray-300 py-1.5 px-3 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm">
 
                                                 <button data-product="{{ $item->product->id }}" type="button"

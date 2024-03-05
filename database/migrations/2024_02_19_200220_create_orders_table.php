@@ -16,7 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->float("totalAmount");
-            $table->set("status", ["pending", "shipped", "delivered"]);
+            $table->string("tax")->nullable();
+            $table->string("shipping_address")->nullable();
+            $table->decimal('shipping_cost', 10, 2)->nullable();
+            $table->string('shipping_method', 50)->nullable();
+            $table->string('payment_method', 50)->nullable();
+            $table->set("status", ["pending", "paid", "shipped", "delivered"]);
             $table->timestamps();
         });
     }
