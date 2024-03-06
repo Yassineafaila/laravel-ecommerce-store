@@ -27,7 +27,7 @@ class CartController extends Controller
             $user = auth()->user();
             $productId = $request->product;
             $quantity = $request->quantity ? $request->quantity : 1;
-            $productExists = Cart::where("product_id", $productId)->exists();
+            $productExists = Cart::where([["product_id", $productId], ["user_id", $user->id]])->exists();
             if ($productExists) {
                 return response()->json(["message" => "Product Already Exists in The Cart"]);
             }

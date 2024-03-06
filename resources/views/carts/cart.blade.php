@@ -22,25 +22,24 @@
                                             class="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32">
                                     </div>
 
-                                    <div class="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                                    <div class="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6 ">
                                         <div>
                                             <div class="flex justify-between sm:grid sm:grid-cols-2">
-                                                <div class="pr-6">
+                                                <div class="pr-6 flex justify-between w-full">
                                                     <h3 class="text-sm">
                                                         <a href="#"
                                                             class="font-medium text-gray-700 hover:text-gray-800">
                                                             {{ $item->product->name }}</a>
                                                     </h3>
+                                                    <p>
+                                                        $
+                                                        <input type="number" readonly name="price_{{ $item->product->id }}"
+                                                            value={{ $item->product->price * $item->Quantity }}
+                                                            class="price bg-transparent " />
+                                                    </p>
                                                 </div>
 
-                                                <p>
-                                                    $
-                                                    <input type="number" readonly name="price_{{ $item->product->id }}"
-                                                        value={{ $item->product->price * $item->Quantity }}
-                                                        class="price bg-transparent" />
-                                                </p>
                                             </div>
-
                                             <div
                                                 class="mt-4 flex items-center sm:absolute sm:top-0 sm:left-1/2 sm:mt-0 sm:block">
                                                 <label for="quantity-0" class="sr-only">{{ $item->product->name }}</label>
