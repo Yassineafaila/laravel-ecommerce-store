@@ -143,63 +143,50 @@
                 <div class="mt-5 flex flex-grow flex-col">
                     <nav class="flex-1 space-y-1 px-2 pb-4">
                         <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-                        <a href="/admin/dashboard"
+                        <a href="/admin/dashboard/home"
                             class="bg-red-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <svg class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                            </svg>
+                            <i class="fa-solid fa-house text-gray-500 mr-3 flex-shrink-0  text-xl"></i>
                             Home
                         </a>
 
                         <a href="/admin/dashboard/manage_products"
                             class="text-gray-600 hover:bg-red-200  hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage Products
+                            <i class="fa-solid fa-bag-shopping text-gray-500 mr-3 flex-shrink-0  text-xl"></i>
+                            <span> Manage Products</span>
                         </a>
                         <a href="/admin/dashboard/manage_orders"
                             class="text-gray-600 hover:bg-red-200  hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i
-                                class="fa-brands fa-product-hunt  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage Orders
+                            <i class="fa-solid fa-cart-shopping text-gray-500 mr-3 flex-shrink-0  text-xl"></i>
+                            <span>Manage Orders</span>
                         </a>
 
                         <a href="/admin/dashboard/manage_users"
                             class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <!-- Heroicon name: outline/folder -->
-                            <i class="fa-solid fa-user  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage users
+                            <i class="fa-solid fa-user-group  text-gray-500 mr-3 flex-shrink-0  text-xl"></i>
+                            <span>Manage Customers</span>
                         </a>
 
                         <a href="/admin/dashboard/manage_categories"
                             class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage Categories
+                            <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 text-xl"></i>
+                            <span>Manage Categories</span>
                         </a>
                         <a href="/admin/dashboard/manage_payments"
                             class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-solid fa-list  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Manage Payments
+                            <i class="fa-solid fa-credit-card text-gray-500 mr-3 flex-shrink-0 text-xl"></i>
+                            <span>Manage Payments</span>
                         </a>
-                        <a href="/admin/profile"
+                        <a href="#"
                             class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-
-                            <i class="fa-solid fa-address-card text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Profile
-                        </a>
-                        <a href=""
-                            class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                            <i class="fa-solid fa-gear  text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl"></i>
-                            Settings
+                            <i class="fa-solid fa-gear  text-gray-500 mr-3 flex-shrink-0  text-xl"></i>
+                            <span>Settings</span>
                         </a>
                         <form method="POST" action="/logout">
                             @csrf
                             <button type="submit"
                                 class="text-gray-600 hover:bg-red-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                 <i
-                                    class="fa-solid fa-right-from-bracket text-gray-500 mr-3 flex-shrink-0 h-6 w-6 text-2xl "></i>
+                                    class="fa-solid fa-right-from-bracket text-gray-500 mr-3 flex-shrink-0 text-xl "></i>
                                 Logout</button>
                         </form>
 
@@ -252,46 +239,16 @@
                                     d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                             </svg>
                         </button>
-
-                        <!-- Profile dropdown -->
-                        <div class="relative ml-3">
-                            <div>
-                                <button type="button"
-                                    class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none  focus:border-2 focus:border-red-500"
-                                    id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                    <span class="sr-only">Open user menu</span>
-                                    <img class="h-8 w-8 rounded-full"
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        alt="">
-                                </button>
-                            </div>
-
-                            <!--
-              Dropdown menu, show/hide based on menu state.
-            -->
-                            <div class="user-menu hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
-                                tabindex="-1">
-
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                    tabindex="-1" id="user-menu-item-1">Settings</a>
-
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                    tabindex="-1" id="user-menu-item-2">Sign out</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
+            {{-- main content  --}}
+
             <main class="flex-1 w-full">
                 <div class="py-6">
-                    {{-- <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                        <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
-                    </div> --}}
                     <div class="mx-auto w-full px-4 sm:px-6 md:px-8">
                         @yield('content')
-
                     </div>
                 </div>
             </main>

@@ -1,4 +1,4 @@
-@extends('admin.dashboard')
+@extends('admin.layouts.layout')
 @section('content')
     <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

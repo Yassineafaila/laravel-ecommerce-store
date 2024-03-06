@@ -1,4 +1,4 @@
-@extends('admin.dashboard')
+@extends('admin.layouts.layout')
 @section('content')
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
@@ -7,10 +7,6 @@
                 <p class="mt-2 text-sm text-gray-700">A list of all the Orders in your store </p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-                <a href="/admin/dashboard/manage_products/create"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none  sm:w-auto">Add
-                    Product</a>
             </div>
         </div>
         <div class="mt-8 flex flex-col">
@@ -87,12 +83,22 @@
                                             {{ $order->payment_method }}
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                            {{ $order->status }}
+                                            @if ($order->status === 'paid')
+                                                <span class="bg-orange-300 px-2 py-1.5 rounded">{{ $order->status }}</span>
+                                            @else
+                                                @if ($order->status === 'shipped')
+                                                    <span
+                                                        class="bg-yellow-300 px-2 py-1.5 rouned">{{ $order->status }}</span>
+                                                @else
+                                                    <span
+                                                        class="bg-green-300 px-2 py-1.5 rounded">{{ $order->status }}</span>
+                                                @endif
+                                            @endif
                                         </td>
 
                                         <td
                                             class="relative whitespace-nowrap py-4 px-3 text-center text-sm font-medium sm:pr-6 ">
-                                            <a href="/admin/dashboard/manage_products/{{ $order->id }}/edit"
+                                            <a href="/admin/dashboard/manage_orders/{{ $order->id }}/edit"
                                                 class="text-red-500 me-2 hover:underline">Edit
                                             </a>
                                         </td>

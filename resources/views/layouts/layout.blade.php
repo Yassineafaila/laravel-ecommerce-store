@@ -26,33 +26,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- ---tailwind--- --}}
     @vite('resources/css/app.css')
-    {{-- ---swiper---js --}}
-
-    @notifyCss
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-
-    <style>
-        .swiper-container {
-            width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-
-        .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-        }
-    </style>
 </head>
-
 <body class="bg-grey-200">
-    <x-notify::notify class="left-0" />
     {{-- ---header--- --}}
     @include('components.header')
     <main class="main flex  flex-col justify-between">
@@ -60,21 +36,6 @@
     </main>
     {{-- ---footer---- --}}
     @include('components.footer')
-
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-    </script>
-    @notifyJs
     @yield('scripts')
 </body>
-
 </html>

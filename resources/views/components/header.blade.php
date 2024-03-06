@@ -72,7 +72,7 @@
                         class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200 ">Profile</a>
                     @if (auth()->user()->hasRole('admin'))
                         <div>
-                            <a href="/admin/dashboard?isAdmin={{ auth()->user()->hasRole('admin') ? 'true' : 'false' }}"
+                            <a href="/admin/dashboard/home?isAdmin={{ auth()->user()->hasRole('admin') ? 'true' : 'false' }}"
                                 class="block text-start px-4 py-2 text-sm text-gray-700 hover:bg-red-200">Dashboard</a>
 
                         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +12,7 @@ use App\Http\Controllers\Admin\ProductController;
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get("/profile", [ProductController::class, "showProfile"]);
     Route::prefix("/dashboard")->group(function () {
-        Route::get('/', [AdminController::class, 'showDashboard']);
+        Route::get('/home', [AdminController::class, 'index']);
 
         //routes to manage products
         Route::prefix("/manage_products")->group(function () {
@@ -26,6 +27,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
         // routes to manage orders
         Route::prefix("/manage_orders")->group(function () {
             Route::get("/", [OrderController::class, "index"]);
+            Route::get("/{order}/edit", [OrderController::class, "edit"]);
+            Route::put("/{order}/edit", [OrderController::class, "update"]);
         });
 
         //routes to manage users
@@ -48,6 +51,10 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
             Route::delete("/{category}/delete", [CategoriesController::class, "delete"]);
         });
 
+        //routes to manage payments
+        Route::prefix("/manage_payments")->group(function () {
+            Route::get("/", [PaymentController::class, "index"]);
+        });
     });
     Route::get('/settings', [AdminController::class, 'showSettings']);
 });

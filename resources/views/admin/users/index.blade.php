@@ -1,16 +1,10 @@
-@extends('admin.dashboard')
+@extends('admin.layouts.layout')
 @section('content')
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-xl font-semibold text-gray-900">Users</h1>
                 <p class="mt-2 text-sm text-gray-700">A list of all the Uses in your store </p>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-                <a href="/admin/dashboard/manage_uses/create"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none  sm:w-auto">Add
-                    User</a>
             </div>
         </div>
         <div class="mt-8 flex flex-col">
@@ -60,8 +54,8 @@
                                             {{ $user->id }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
 
-                                            <img src="{{ $user->avatar ? asset("$user->avatar") : null }}"
-                                                class="mx-auto w-10 h-10" />
+                                            <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }}"
+                                                alt="{{ $user->firstName . $user->lastName }}" class="mx-auto w-10 h-10" />
                                         </td>>
 
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
@@ -74,13 +68,10 @@
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
                                             {{ $user->email }}</td>
-                                        <td  class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
                                             {{ $user->roles[0]->name }}</>
                                         <td
                                             class="relative whitespace-nowrap py-4 px-3 text-center text-sm font-medium sm:pr-6 ">
-                                            <a href="/admin/dashboard/manage_users/{{ $user->id }}/edit"
-                                                class="text-red-500 me-2 hover:underline">Edit
-                                            </a>
                                             <form method="post"
                                                 action="/admin/dashboard/manage_users/{{ $user->id }}/delete"
                                                 class="inline">

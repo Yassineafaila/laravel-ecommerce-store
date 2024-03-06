@@ -3,14 +3,10 @@
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-xl font-semibold text-gray-900">Products</h1>
-                <p class="mt-2 text-sm text-gray-700">A list of all the Products in your store </p>
+                <h1 class="text-xl font-semibold text-gray-900">Payments</h1>
+                <p class="mt-2 text-sm text-gray-700">A list of all the Payments in your store </p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-                <a href="/admin/dashboard/manage_products/create"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none  sm:w-auto">Add
-                    Product</a>
             </div>
         </div>
         <div class="mt-8 flex flex-col">
@@ -25,70 +21,55 @@
                                     </th>
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 sm:pl-6">
-                                        Image
+                                        User Name
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 sm:pl-6">
+                                        User Email
                                     </th>
 
                                     <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
-                                        Name</th>
+                                        Payment Id</th>
                                     <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
-                                        Description</th>
+                                        Amount</th>
                                     <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
-                                        Price</th>
+                                        Currency</th>
                                     <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
-                                        Stock Quantity
+                                        Payment Status
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
-                                        Rating
-                                    </th>
-
-                                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
-                                        Action
+                                        Payment Method
                                     </th>
 
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
 
-                                @foreach ($products as $product)
+                                @foreach ($payments as $payment)
                                     <tr>
                                         <td
                                             class="whitespace-nowrap py-4 text-center text-sm font-medium text-gray-900 sm:pl-6">
-                                            {{ $product->id }}</td>
+                                            {{ $payment->id }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                            @php
-                                                $subString = 'images';
-                                            @endphp
-                                            <img src="{{ strpos($product->image, $subString) === 0 ? asset("$product->image") : asset('storage/' . $product->image) }}"
-                                                class="mx-auto w-10 h-10" />
+                                            {{ $payment->user_name }}
                                         </td>>
-
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                            {{ $product->name }}
+                                            {{ $payment->email }}
+                                        </td>>
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
+                                            {{ $payment->payment_id }}
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                            {{ $product->description }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                            ${{ $product->price }}
+                                            $ {{ $payment->amount }}
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                            {{ $product->stockQuantity }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
-                                            {{ $product->rating }}
+                                            {{ $payment->currency }}
                                         </td>
-
-                                        <td
-                                            class="relative whitespace-nowrap py-4 px-3 text-center text-sm font-medium sm:pr-6 ">
-                                            <a href="/admin/dashboard/manage_products/{{ $product->id }}/edit"
-                                                class="text-red-500 me-2 hover:underline">Edit
-                                            </a>
-                                            <form method="post"
-                                                action="/admin/dashboard/manage_products/{{ $product->id }}/delete"
-                                                class="inline">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit"
-                                                    class="bg-gray-400 px-2 py-1.5 rounded-md hover:bg-gray-900 hover:text-white">Delete</button>
-                                            </form>
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
+                                            {{ $payment->payment_status }}
+                                        </td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">
+                                            {{ $payment->payment_method }}
                                         </td>
                                     </tr>
                                 @endforeach
