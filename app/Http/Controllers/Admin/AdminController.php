@@ -2,13 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
     //
-    public function showDashboard(){
-        return view("admin.dashboard");
+    public function index()
+    {
+        $totalOrders = Order::all()->count();
+        $totalPendingOrders = Order::where("status", "pending")->count();
+        $totalSales = Payment::all()->sum("amount");
+        //calc the total sales
+        $totalProducts = Product::all()->count();
+        return view(
+            "admin.home.index",
+            [
+                "orders" => $totalOrders,
+                "pendingOrders" => $totalPendingOrders,
+                "sales" => $totalSales,
+                "products" => $totalProducts
+            ]
+        );
     }
 }
